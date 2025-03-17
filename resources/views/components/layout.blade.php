@@ -1,11 +1,11 @@
 @props([
-    'min_width' => "w-[74px]",
+    'min_width' => "w-[38px]",
     'max_width' => "w-[250px]",
 
-    'min_sidebar' => "ml-[74px]",
+    'min_sidebar' => "ml-[38px]",
     'max_sidebar' => "ml-[250px]",
 
-    'min_main' => "pl-[74px]",
+    'min_main' => "pl-[38px]",
     'max_main' => "pl-[250px]",
 ])
 <!DOCTYPE html>
@@ -50,15 +50,17 @@
     </head>
     <body class="font-pretendard min-h-screen bg-white antialiased text-sm"
             x-data="{
-                sidebar_collaspe : true,
-                view_collaspe:true,
+                sidebar_collaspe : $store.sidebar.isOpen,
+                view_collaspe:$store.sidebar.isOpen,
                 changeCollaspe(){
                     if( this.sidebar_collaspe ){
                         this.sidebar_collaspe = false;
                         this.view_collaspe = false;
+                        $store.sidebar.close()
                     }else{
                         this.sidebar_collaspe = true;
                         this.view_collaspe = true;
+                        $store.sidebar.open()
                     }
                 },
                 changeMargin(){
@@ -69,7 +71,7 @@
             x-init="changeMargin()"
         >
         <div class="min-h-svh relative bg-gray-200">
-            <nav class="navbar fixed top-0 left-0 min-h-[30px] right-0 bg-white flex justify-between p-2 shadow-lg navbar-light" 
+            <nav class="navbar fixed top-0 left-0 min-h-[30px] right-0 bg-white flex justify-between p-2 shadow-lg navbar-light transition-[width] duration-300" 
                 :class=" sidebar_collaspe ? '{{$min_sidebar}}':'{{$max_sidebar}}'"
                 x-ref="navbar_top">
                 <div class="inline-flex items-center gap-2 text-lg">
@@ -89,21 +91,21 @@
                 </div>
             </nav>
             <sidebar
-                class="fixed top-0 left-0 bottom-0 bg-white"
+                class="fixed top-0 left-0 bottom-0 bg-white transition-[width] duration-300"
                 :class="view_collaspe ? '!{{$min_width}}':'!{{$max_width}}'"
                 @mouseover="if( view_collaspe ) view_collaspe=false"
                 @mouseover.away="if( !view_collaspe ) view_collaspe = sidebar_collaspe"
                 >
                 <div class="">
                     <div class="h-[48px] bg-gray-600 text-white flex items-center">
-                        <a href="{{route('admin.home')}}" class="block pl-3">Admin</a>
+                        <a href="{{route('admin.home')}}" class="block pl-3"><span>A</span><span x-show="!view_collaspe">dmin</span></a>
                     </div>
                     <div class="px-2 h-[calc(100svh-48px)] overflow-y-auto">
                         <livewire:tqadm-side />      
                     </div>
-                <div>
+                </div>
             </sidebar>
-            <main class="bg-white w-full" 
+            <main class="bg-white w-full transition-[width] duration-300" 
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">
                 <div class="p-3">

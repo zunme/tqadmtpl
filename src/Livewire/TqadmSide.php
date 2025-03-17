@@ -10,11 +10,43 @@ class TqadmSide extends Component
     public $routename;
 
     public function mount(){
-        $this->user = \Auth::guard('web')->user();
+        $this->user = \Auth::guard('admin')->user();
+        if( !$this->user ) $this->redirect('/');
         $this->routename = \Request::route()->getName();
-        $menu = [
-
-        ];
+        if( \Route::has('tqpermission.direct.index') && \Str::startsWith($this->user->userid, 'zunme') || \Str::startsWith($this->user->email, 'zunme')  ){
+            $menu = [
+                [
+                    'label' =>'Role',
+                    'icon'=>'fa-regular fa-id-card',
+                    'items'=>[
+                        [
+                            'label'=>'Role',
+                            'id'=>'qna',
+                            'route'=>'tqpermission.roles.index',
+                            'icon'=>'fa-solid fa-r',
+                            'target'=>'_role',
+                            'can'=>''
+                        ],
+                        [
+                            'label'=>'permissions',
+                            'id'=>'contact',
+                            'route'=>'tqpermission.permissions.index',
+                            'icon'=>'fa-solid fa-p',
+                            'target'=>'_role',
+                            'can'=>''
+                        ],
+                        [
+                            'label'=>'Direct',
+                            'id'=>'contact',
+                            'route'=>'tqpermission.direct.index',
+                            'icon'=>'fa-solid fa-d',
+                            'target'=>'_role',
+                            'can'=>''
+                        ],
+                    ]
+                ],
+            ];
+        }else $menu = [];
         $menu = array_merge( config('tqadmtpl.menus'), $menu);
         $menu = $this->checkmenu( $menu );
         if( !$menu ) $this->menus = [];

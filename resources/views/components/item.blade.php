@@ -4,6 +4,11 @@
 ])
 <li class="fi-sidebar-item fi-active fi-sidebar-item-active flex flex-col  {{$border_b ? 'my-1 py-1 border-b border-gray-300':'gay-y-1'}}">
     <a href="{{$item->link}}" 
+        @if(isset($item->target) && $item->target)
+            target="{{$item->target}}"
+        @else
+            wire:navigate
+        @endif
         x-on:click="window.matchMedia(`(max-width: 1024px)`).matches &amp;&amp; $store.sidebar.close()" 
         class="fi-sidebar-item-button relative flex items-center justify-center gap-x-3 rounded-lg px-2 py-2 
             outline-none transition duration-75 
@@ -12,7 +17,7 @@
             min-h-[36px]
             {{ isset($item->isActive) && $item->isActive ? 'bg-gray-100' : ''}}
             dark:bg-white/5"
-        wire:navigate
+
         >
         @if( $item->icon )
         <i class="{{ $item->icon}} fi-sidebar-item-icon font-medium 

@@ -105,11 +105,11 @@
                     </div>
                 </div>
             </sidebar>
-            <main class="bg-gray-600 w-full transition-[width] duration-300 h-screen" 
+            <main class="w-full transition-[width] duration-300" 
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">
-                <div class="p-1 h-full ">
-                    <div class="bg-white h-full rounded-md p-2">
+                <div class="p-1">
+                    <div class="bg-white rounded-md p-2">
                         {{$slot}}
                     </div>
                 </div>

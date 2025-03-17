@@ -117,5 +117,31 @@
         <!-- flux -->
         @fluxScripts
         <script src="/flux/flux.min.js?id=8da5418c" data-navigate-once></script>
+        <script>
+         document.addEventListener("alpine:init", () => {
+            window.Alpine.store("sidebar", {
+                isOpen: window.Alpine.$persist(!0).as("isOpen"),
+                collapsedGroups: window.Alpine.$persist([]).as("collapsedGroups"),
+                groupIsCollapsed: function (n) {
+                return this.collapsedGroups.includes(n);
+                },
+                collapseGroup: function (n) {
+                this.collapsedGroups.includes(n) ||
+                    (this.collapsedGroups = this.collapsedGroups.concat(n));
+                },
+                toggleCollapsedGroup: function (n) {
+                this.collapsedGroups = this.collapsedGroups.includes(n)
+                    ? this.collapsedGroups.filter((p) => p !== n)
+                    : this.collapsedGroups.concat(n);
+                },
+                close: function () {
+                this.isOpen = !1;
+                },
+                open: function () {
+                this.isOpen = !0;
+                },
+            });
+         });
+        </script>
     </body>
 </html>

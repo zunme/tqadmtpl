@@ -28,7 +28,7 @@
 
     <ul x-show="! $store.sidebar.groupIsCollapsed(label)" x-collapse.duration.200ms="" class="fi-sidebar-group-items flex flex-col gap-y-1 pl-2">
         @foreach( $item->items as $sub)
-        <x-admin.sidebar.item :item="$sub"/>
+        <x-tqadm-sidebaritem :item="$sub"/>
         @endforeach
     </ul>
 </li>

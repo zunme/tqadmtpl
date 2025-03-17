@@ -91,7 +91,7 @@
                 </div>
             </nav>
             <sidebar
-                class="fixed top-0 left-0 bottom-0 bg-white transition-[width] duration-300"
+                class="fixed top-0 left-0 bottom-0 bg-white shadow-2xl transition-[width] duration-300"
                 :class="view_collaspe ? '!{{$min_width}}':'!{{$max_width}}'"
                 @mouseover="if( view_collaspe ) view_collaspe=false"
                 @mouseover.away="if( !view_collaspe ) view_collaspe = sidebar_collaspe"
@@ -105,11 +105,13 @@
                     </div>
                 </div>
             </sidebar>
-            <main class="bg-white w-full transition-[width] duration-300" 
+            <main class="bg-gray-600 w-full transition-[width] duration-300 h-screen" 
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">
-                <div class="p-3">
-                    {{$slot}}
+                <div class="p-1 h-full ">
+                    <div class="bg-white h-full rounded-md p-2">
+                        {{$slot}}
+                    </div>
                 </div>
             </main>
         </div>

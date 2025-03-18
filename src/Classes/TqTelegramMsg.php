@@ -18,7 +18,7 @@ class TqTelegramMsg
     public function __construct()
     {
         $this->telegramBotToken = config('tqadmtpl.telegram.bot_token', '');
-        $this->telegramChatId = config('tqadmtpl.telegram.', ''); // 7869633202
+        $this->telegramChatId = config('tqadmtpl.telegram.chat_id', ''); // 7869633202
 
         return $this;
     }
@@ -27,7 +27,16 @@ class TqTelegramMsg
         $this->telegramChatId = $chatid;
         return $this;
     }
-
+    public function getConfig(){
+        return [
+            'telegramBotToken'=>$this->telegramBotToken,
+            'telegramChatId'=>$this->telegramChatId,
+        ];
+    }
+    public function findChatId(){
+        return $this->getMe();
+        return $this->telegramChatId ?? $this->getMe();
+    }
     public function sendTelegram($message)
     {
         if (! $this->telegramChatId) {

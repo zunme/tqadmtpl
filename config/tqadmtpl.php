@@ -3,8 +3,8 @@
 // config for Taq/Tqadmtpl
 return [
     'telegram'=>[
-        'bot_token'=>'',
-        'chat_id'=>'',
+        'bot_token'=>env('TELEGRAM_BOT_TOKEN', '7311311502:AAGLcuzU0IGOd3yalN7PnWedfmv_kVECVRA'),
+        'chat_id'=>env('TELEGRAM_CHAT_ID', '7869633202'),
     ],
     'menus'=>[
         [

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Http;
 
 /**
  * useage
- * $messages = (new Messages)->sendTelegram('test');
+ * $messages = (new TqTelegramMsg)->sendTelegram('test');
+ * $messages = (new TqTelegramMsg)->set(TOKEN,CHATID)->sendTelegram('test');
  **/
 class TqTelegramMsg
 {

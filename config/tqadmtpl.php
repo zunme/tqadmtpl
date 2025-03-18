@@ -2,6 +2,10 @@
 
 // config for Taq/Tqadmtpl
 return [
+    'telegram'=>[
+        'bot_token'=>'',
+        'chat_id'=>'',
+    ],
     'menus'=>[
         [
             'label'=>'HOME',

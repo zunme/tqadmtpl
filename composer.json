@@ -21,8 +21,22 @@
         "illuminate/contracts": "^10.0||^11.0||^12.0",
         "blade-ui-kit/blade-ui-kit": "^0.7.0",
         "wire-elements/modal": "^2.0",
-        "power-components/livewire-powergrid": "^6.2"
+        "power-components/livewire-powergrid": "^6.2",
+        "taq/tqforms": "^1.0.5",
+        "taq/tqpermission": "^1.0.9"
     },
+    "repositories": [
+        {
+            "unique_perforce_client_name": "taq/tqforms",
+            "type": "vcs",
+            "url": "https://github.com/zunme/tqforms.git"
+        },
+        {
+            "unique_perforce_client_name": "taq/tqpermission",
+            "type": "vcs",
+            "url": "https://github.com/zunme/tqpermission.git"
+        }
+    ],
     "require-dev": {
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1.1||^7.10.0",

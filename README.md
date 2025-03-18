@@ -68,8 +68,8 @@
             내용안 "from":{"id" : XXXXXX } 를 
                 config telegram.chat_id 에 저장
             2. php artisan tinker
-                use Taq\Messages\Messages
-                (new Messages)->getme() 로 chat_id 구해서
+                use Taq\Tqadmtpl\Classes\TqTelegramMsg;
+                (new TqTelegramMsg)->getMyId() 로 chat_id 구해서
                 config telegram.chat_id 에 저장
 
     ## TQFOMS

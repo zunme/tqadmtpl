@@ -33,14 +33,10 @@ class TqTelegramMsg
             'telegramChatId'=>$this->telegramChatId,
         ];
     }
-    public function findChatId(){
-        return $this->getMe();
-        return $this->telegramChatId ?? $this->getMe();
-    }
     public function sendTelegram($message)
     {
         if (! $this->telegramChatId) {
-            $this->getMe();
+            $this->getMyId();
         }
         try {
             $res = Http::get("https://api.telegram.org/bot{$this->telegramBotToken}/sendMessage?chat_id={$this->telegramChatId}&text={$message}")->json();
@@ -69,7 +65,7 @@ class TqTelegramMsg
         }
     }
 
-    public function getMe()
+    public function getMyId()
     {
         $res = $this->getUpdates();
         $lastid = null;

@@ -20,6 +20,9 @@ return [
     'group_menu_icon_change'=>false,
     'side-z-index'=>'z-10',
     'top-z-index'=>'z-9',
+    'add_body'=>[
+        '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>',
+    ],
     'menus'=>[
         [
             'label'=>'HOME',

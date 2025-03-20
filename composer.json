@@ -23,7 +23,7 @@
         "wire-elements/modal": "^2.0",
         "power-components/livewire-powergrid": "^6.2",
         "taq/tqforms": "^1.0.5",
-        "taq/tqpermission": "^1.0.9"
+        "taq/tqpermission": "^1.0.91"
     },
     "repositories": [
         {

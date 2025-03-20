@@ -129,5 +129,9 @@
             });
          });
         </script>
+
+        @foreach (  config('tqadmtpl.add_body') as $item)
+            {!! $item !!}
+        @endforeach
     </body>
 </html>

@@ -25,7 +25,7 @@ class TqadmSide extends Component
                             'id'=>'qna',
                             'route'=>'tqpermission.roles.index',
                             'icon'=>'fa-solid fa-r',
-                            'target'=>'_role',
+                            'target'=>'',
                             'can'=>''
                         ],
                         [
@@ -33,7 +33,7 @@ class TqadmSide extends Component
                             'id'=>'contact',
                             'route'=>'tqpermission.permissions.index',
                             'icon'=>'fa-solid fa-p',
-                            'target'=>'_role',
+                            'target'=>'',
                             'can'=>''
                         ],
                         [
@@ -41,7 +41,7 @@ class TqadmSide extends Component
                             'id'=>'contact',
                             'route'=>'tqpermission.direct.index',
                             'icon'=>'fa-solid fa-d',
-                            'target'=>'_role',
+                            'target'=>'',
                             'can'=>''
                         ],
                     ]

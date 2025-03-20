@@ -18,6 +18,8 @@ return [
         'max_main' => "pl-[250px]",
     ],
     'group_menu_icon_change'=>false,
+    'side-z-index'=>'z-10',
+    'top-z-index'=>'z-9',
     'menus'=>[
         [
             'label'=>'HOME',

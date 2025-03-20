@@ -18,7 +18,7 @@ class TqadmSide extends Component
             $menu = [
                 [
                     'label' =>'Role',
-                    'icon'=>'fa-regular fa-id-card',
+                    'icon'=>'fa-solid fa-shield-halved',
                     'items'=>[
                         [
                             'label'=>'Role',

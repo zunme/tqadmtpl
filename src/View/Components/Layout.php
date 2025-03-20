@@ -17,7 +17,7 @@ class Layout extends Component
             'max_width' => config('tqadmtpl.size.max_width'),
         
             'min_sidebar' => config('tqadmtpl.size.min_sidebar'),
-            'max_sidebar' => config('tqadmtpl.size.minmax_sidebar_width'),
+            'max_sidebar' => config('tqadmtpl.size.max_sidebar'),
         
             'min_main' => config('tqadmtpl.size.min_main'),
             'max_main' => config('tqadmtpl.size.max_main'),

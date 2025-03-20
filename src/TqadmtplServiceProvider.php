@@ -12,6 +12,7 @@ use Taq\Tqadmtpl\View\Components\Sidebaritem;
 use Taq\Tqadmtpl\View\Components\Sidebargroup;
 
 use Taq\Tqadmtpl\Livewire\TqadmSide;
+use Taq\Tqadmtpl\Livewire\TqSideMenu;
 
 class TqadmtplServiceProvider extends PackageServiceProvider
 {
@@ -37,5 +38,6 @@ class TqadmtplServiceProvider extends PackageServiceProvider
     }
     public function packageRegistered(){
         Livewire::component('tqadm-side', TqadmSide::class);
+        Livewire::component('tqadm-menu', TqSideMenu::class);
     }
 }

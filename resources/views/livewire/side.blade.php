@@ -1,4 +1,4 @@
-<ul class="fi-sidebar-nav-groups -mx-2 flex flex-col">
+<ul class="fi-sidebar-nav-groups -mx-2">
 
 <!-- menu -->
 @foreach($menus as $menu)

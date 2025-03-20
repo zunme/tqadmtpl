@@ -75,7 +75,7 @@ class TqadmSide extends Component
     protected function groupcheck( $group){
         $items = [];
         foreach( $group['items'] as $menu ){
-            $temp = $this->itemcheck( $menu);
+            $temp = $this->itemcheck( $menu , true);
             if( $temp ) $items[] = $temp; 
         }
         if( count($items)  < 1 ) return false;
@@ -85,7 +85,7 @@ class TqadmSide extends Component
         $group['id'] = 'menu_grp_'.\Str::random(8);
         return (object)$group;
     }
-    protected function itemcheck( $item){
+    protected function itemcheck( $item, $is_sub = false){
         if( !isset($item['id'])) return false;
         if( $item['id']=='test'){
             $access =true;
@@ -97,7 +97,7 @@ class TqadmSide extends Component
         $item['id'] = 'menu_item_'.\Str::random(8);
         $item['type'] = 'item';
         $item['link'] = isset($item['route']) && $item['route'] ?  route($item['route']) : '#';
-        
+        $item['is_sub'] = $is_sub;
         return (object)($item);
     }
 }

@@ -13,9 +13,10 @@
         >
         <div class="flex items-center justify-center grow flex-grow min-h-[36px]"
             >
-            <div class="w-6 flex items-center justify-center">
+            <div class="w-6 h-6 rounded flex items-center justify-center
+                    {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-200' : 'text-gray-500'}}
+                ">
                 <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
-                {{ isset($item->isActive) && $item->isActive ? ' text-red-400' : 'text-gray-500'}}
                 dark:text-primary-400" aria-hidden="true"
                 x-show="!view_collaspe|| $store.sidebar.groupIsCollapsed(label)"
                 ></i>

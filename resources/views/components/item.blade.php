@@ -3,7 +3,9 @@
     'border_b'=>false,
 ])
 <li class="fi-sidebar-item fi-active fi-sidebar-item-active flex flex-col  {{$border_b ? ' py-1 border-b border-gray-300':'gay-y-1'}}">
-    <a href="{{$item->link}}" 
+    <a  @if (isset($item->link) && $item->link)
+            href="{{$item->link}}" 
+        @endif
         @if(isset($item->target) && $item->target)
             target="{{$item->target}}"
         @else
@@ -19,9 +21,8 @@
             dark:bg-white/5"
 
         >
-        <div class="w-6 flex items-center justify-center">
+        <div class="w-6 h-6 rounded flex items-center justify-center {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-400' : 'text-gray-500'}}">
             <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
-            {{ isset($item->isActive) && $item->isActive ? ' text-red-400' : 'text-gray-500'}}
             dark:text-primary-400" aria-hidden="true"></i>
         </div>
         <span class="fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? ' text-red-400' : 'text-gray-500'}} dark:text-primary-400"

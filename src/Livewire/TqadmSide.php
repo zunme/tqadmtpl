@@ -74,15 +74,22 @@ class TqadmSide extends Component
     }
     protected function groupcheck( $group){
         $items = [];
+        $isActive = false;
+
         foreach( $group['items'] as $menu ){
             $temp = $this->itemcheck( $menu , true);
-            if( $temp ) $items[] = $temp; 
+            if( $temp ) {
+                $items[] = $temp; 
+                if($temp->isActive) $isActive = true;
+            }
         }
         if( count($items)  < 1 ) return false;
         $group['items'] = $items;
         $group['type'] = 'group';
         $group['label'] = !isset($group['label']) || !$group['label']  ? "menu" : $group['label'];
         $group['id'] = 'menu_grp_'.\Str::random(8);
+        $group['isActive'] = $isActive;
+
         return (object)$group;
     }
     protected function itemcheck( $item, $is_sub = false){
@@ -96,7 +103,8 @@ class TqadmSide extends Component
         //dump( (isset($item['route']) ? $item['route'] : '---') );
         $item['id'] = 'menu_item_'.\Str::random(8);
         $item['type'] = 'item';
-        $item['link'] = isset($item['route']) && $item['route'] ?  route($item['route']) : '#';
+        $item['link'] = isset($item['route']) && $item['route'] ?  route($item['route']) : '';
+        $item['target'] = isset($item['target']) && $item['target'] ?  $item['target'] : '';
         $item['is_sub'] = $is_sub;
         return (object)($item);
     }

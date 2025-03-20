@@ -7,6 +7,15 @@
         php artisan vendor:publish --tag=tqadmtpl-migrations
         php artisan vendor:publish --tag=tqadmtpl-configs
         ```
+        ```
+        <x-tqadm-layout>
+            <div>...</div>
+        </x-tqadm-layout>
+
+        $header_left slot
+        $header_right slot
+        
+        ```
 
         - forms
         ```

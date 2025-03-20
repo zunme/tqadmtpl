@@ -1,13 +1,3 @@
-@props([
-    'min_width' => "w-[38px]",
-    'max_width' => "w-[250px]",
-
-    'min_sidebar' => "ml-[38px]",
-    'max_sidebar' => "ml-[250px]",
-
-    'min_main' => "pl-[38px]",
-    'max_main' => "pl-[250px]",
-])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
@@ -90,21 +80,9 @@
                     @endif
                 </div>
             </nav>
-            <sidebar
-                class="fixed top-0 left-0 bottom-0 bg-white shadow-2xl transition-[width] duration-300 overflow-x-hidden"
-                :class="view_collaspe ? '!{{$min_width}}':'!{{$max_width}}'"
-                @mouseover="if( view_collaspe ) view_collaspe=false"
-                @mouseover.away="if( !view_collaspe ) view_collaspe = sidebar_collaspe"
-                >
-                <div class="{{$max_width}}">
-                    <div class="h-[48px] bg-gray-600 text-white flex items-center">
-                        <a href="{{route('admin.home')}}" class="block pl-3"><span>A</span><span x-show="!view_collaspe">dmin</span></a>
-                    </div>
-                    <div class="px-2 h-[calc(100svh-48px)] overflow-y-auto">
-                        <livewire:tqadm-side />      
-                    </div>
-                </div>
-            </sidebar>
+
+            <livewire:tqadm-side :max_width="$max_width" :min_width="$min_width"/>      
+  
             <main class="w-full transition-[width] duration-300" 
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">
@@ -120,6 +98,8 @@
         @livewire('wire-elements-modal')
         <!-- flux -->
         @fluxScripts
+        
+        @taqScripts
         <script src="/flux/flux.min.js?id=8da5418c" data-navigate-once></script>
         <script>
          document.addEventListener("alpine:init", () => {

@@ -2,10 +2,22 @@
 
 // config for Taq/Tqadmtpl
 return [
-    'telegram'=>[
-        'bot_token'=>env('TELEGRAM_BOT_TOKEN', '7311311502:AAGLcuzU0IGOd3yalN7PnWedfmv_kVECVRA'),
-        'chat_id'=>env('TELEGRAM_CHAT_ID', '7869633202'),
+    'menu_label'=>[
+        'label'=>"홈가기",
+        'link'=>'/'
     ],
+    'default_text_color'=>'text-gray-500',
+    'size'=>[
+        'min_width' => "w-[38px]",
+        'max_width' => "w-[250px]",
+    
+        'min_sidebar' => "ml-[38px]",
+        'max_sidebar' => "ml-[250px]",
+    
+        'min_main' => "pl-[38px]",
+        'max_main' => "pl-[250px]",
+    ],
+    'group_menu_icon_change'=>false,
     'menus'=>[
         [
             'label'=>'HOME',
@@ -17,26 +29,42 @@ return [
         ],
         /*
         [
-            'label' =>'Qna, Contact',
-            'icon'=>'fa-solid fa-q',
+            'label'=>'test',
+            'id'=>'home',
+            'route'=>'admin.test',
+            'icon'=>'fa-solid fa-home',
+            'target'=>'',
+            'can'=>''
+        ],
+        [
+            'label' =>'Rolet',
+            'icon'=>'',
             'items'=>[
                 [
-                    'label'=>'QnA',
+                    'label'=>'test1',
                     'id'=>'qna',
-                    'route'=>'tqadmsample.test1',
-                    'icon'=>'fa-solid fa-q',
+                    'route'=>'admin.test1',
+                    'icon'=>'fa-solid fa-r',
                     'target'=>'',
                     'can'=>''
                 ],
                 [
-                    'label'=>'Contact',
-                    'id'=>'contact',
-                    'route'=>'tqadmsample.test2',
-                    'icon'=>'fa-solid fa-handshake',
+                    'label'=>'test2',
+                    'id'=>'qna',
+                    'route'=>'admin.test2',
+                    'icon'=>'fa-solid fa-r',
                     'target'=>'',
                     'can'=>''
                 ],
             ]
+        ],
+        [
+            'label'=>'test2',
+            'id'=>'home',
+            'route'=>'',
+            'icon'=>'fa-solid fa-home',
+            'target'=>'',
+            'can'=>''
         ],
         */
     ],

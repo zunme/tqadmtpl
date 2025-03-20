@@ -1,9 +1,9 @@
 @props([
     'item'=>(object)[],
     'border_b'=>false,
+    'group_menu_icon_change'=>false,
+    'default_text_color'=>config('tqadmtpl.default_text_color')
 ])
-@php
-@endphp
 <li 
     x-data="{ label: '{{$item->label}}' }" 
     data-group-label="{{$item->id}}" 
@@ -14,19 +14,23 @@
         <div class="flex items-center justify-center grow flex-grow min-h-[36px]"
             >
             <div class="w-6 h-6 rounded flex items-center justify-center
-                    {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-200' : 'text-gray-500'}}
+                    {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-200' : $default_text_color }}
                 ">
                 <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
                 dark:text-primary-400" aria-hidden="true"
-                x-show="!view_collaspe|| $store.sidebar.groupIsCollapsed(label)"
+                @if($group_menu_icon_change)
+                    x-show="!view_collaspe|| $store.sidebar.groupIsCollapsed(label)"
+                @endif
                 ></i>
+                @if($group_menu_icon_change)
                 <i class="fa-solid fa-chevron-up"
                     x-bind:class="{ '-rotate-180': $store.sidebar.groupIsCollapsed(label) }"
                     x-show="view_collaspe &&  !$store.sidebar.groupIsCollapsed(label)"
                 ></i>
+                @endif
             </div>
             <span 
-                class="ml-3 fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? ' text-primary-600' : 'text-gray-500'}} dark:text-primary-400"
+                class="ml-3 fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? ' text-primary-600' : $default_text_color }} dark:text-primary-400"
                 >
                 {{$item->label}}
             </span>
@@ -44,10 +48,12 @@
     </div>
     <ul x-show="! $store.sidebar.groupIsCollapsed(label)" x-collapse.duration.200ms="" 
         class="fi-sidebar-group-items flex flex-col gap-y-1"
+        @if($group_menu_icon_change)
         :class="{'pl-2' : !view_collaspe}"
+        @endif
         >
         @foreach( $item->items as $sub)
-        <x-tqadm-sidebaritem :item="$sub"/>
+        <x-tqadm-sidebaritem :item="$sub" :group_menu_icon_change="$group_menu_icon_change"/>
         @endforeach
     </ul>
 </li>

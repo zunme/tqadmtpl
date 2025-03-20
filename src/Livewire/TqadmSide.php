@@ -8,8 +8,9 @@ class TqadmSide extends Component
 {
     public $menus;
     public $routename;
+    public $min_width, $max_width;
 
-    public function mount(){
+    public function mount($min_width='', $max_width=''){
         $this->user = \Auth::guard('admin')->user();
         if( !$this->user ) $this->redirect('/');
         $this->routename = \Request::route()->getName();
@@ -51,11 +52,24 @@ class TqadmSide extends Component
         $menu = $this->checkmenu( $menu );
         if( !$menu ) $this->menus = [];
         else $this->menus = $menu;
+
+        $this->min_width=$min_width;
+        $this->max_width=$max_width;
     }
 
     public function render()
     {
-        return view('tqadmtpl::livewire.side');
+        $top_label = config('tqadmtpl.menu_label.label','Admin');
+        $top_link = config('tqadmtpl.menu_label.link','/djemals');
+        $top_label_f =  mb_substr( $top_label, 0, 1);
+        $top_label_l =  mb_substr( $top_label, 1);
+        
+        $data=[
+            'toplabel'=>compact(['top_link','top_label_f','top_label_l','top_label']),
+            'group_menu_icon_change'=>config('tqadmtpl.group_menu_icon_change'),
+        ];
+
+        return view('tqadmtpl::livewire.side',$data);
     }
 
     protected function checkmenu($menus){

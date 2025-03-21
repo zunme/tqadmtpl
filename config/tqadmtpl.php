@@ -2,6 +2,7 @@
 
 // config for Taq/Tqadmtpl
 return [
+    'use_persist'=>false,
     'menu_label'=>[
         'label'=>"홈가기",
         'link'=>'/'

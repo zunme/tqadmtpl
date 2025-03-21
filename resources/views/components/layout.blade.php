@@ -83,9 +83,13 @@
                     @endif
                 </div>
             </nav>
-            @persist('sidebar')
-            <livewire:tqadm-side-persist :max_width="$max_width" :min_width="$min_width"/>      
-            @endpersist
+            @if( config('tqadmtpl.use_persist',false) )
+                @persist('sidebar')
+                <livewire:tqadm-side-persist :max_width="$max_width" :min_width="$min_width"/>      
+                @endpersist
+            @else 
+                <livewire:tqadm-side :max_width="$max_width" :min_width="$min_width"/>
+            @endif
             <main class="w-full transition-[width] duration-300" 
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">

@@ -117,7 +117,9 @@ class TqadmSide extends Component
         //dump( (isset($item['route']) ? $item['route'] : '---') );
         $item['id'] = 'menu_item_'.\Str::random(8);
         $item['type'] = 'item';
-        $item['link'] = isset($item['route']) && $item['route'] ?  route($item['route']) : '';
+        if( !isset($item['link']) || !$item['link'] ){
+            $item['link'] = isset($item['route']) && $item['route'] ?  route($item['route']) : '';
+        }
         $item['target'] = isset($item['target']) && $item['target'] ?  $item['target'] : '';
         $item['is_sub'] = $is_sub;
         return (object)($item);

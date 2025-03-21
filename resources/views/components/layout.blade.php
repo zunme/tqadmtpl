@@ -61,7 +61,7 @@
             }"
             x-init="changeMargin()"
         >
-        <div class="min-h-svh relative bg-gray-200">
+        <div class="min-h-svh relative bg-gray-200 overflow-hidden">
             <nav class="navbar fixed top-0 left-0 min-h-[30px] right-0 bg-white flex justify-between p-2 shadow-lg navbar-light transition-[width] duration-300
                     {{config('tqadmtpl.top-z-index','z-10')}}
                     " 
@@ -83,18 +83,32 @@
                     @endif
                 </div>
             </nav>
-
-            <livewire:tqadm-side :max_width="$max_width" :min_width="$min_width"/>      
-  
+            @persist('sidebar')
+            <livewire:tqadm-side-persist :max_width="$max_width" :min_width="$min_width"/>      
+            @endpersist
             <main class="w-full transition-[width] duration-300" 
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">
                 <div class="p-1">
-                    <div class="bg-white rounded-md p-2">
+                    <div class="bg-white rounded-md px-2 pt-2 {{config('tqadmtpl.use_main_bottom',false) ? 'pb-10':''}}">
                         {{$slot}}
                     </div>
                 </div>
             </main>
+            @if(config('tqadmtpl.use_main_bottom',false)) 
+            <div class="fixed bottom-0 right-0 h-10 w-full {{config('tqadmtpl.top-z-index','z-10')}}"
+                :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
+                >
+                <div class="w-full transition-[width] duration-300 bg-gray-200 h-full rounded-t border {{ config('tqadmtpl.main_bottom_class','')}}" 
+                >
+                    @if( isset($bottom) )
+                        {{$bottom}}
+                    @else 
+                    <div class="text-center">Admin Page</div>
+                    @endif
+                </div>
+            </div>
+            @endif
         </div>
         <!-- wire modal -->
         @livewire('wire-elements-modal')

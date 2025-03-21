@@ -10,8 +10,9 @@ use Taq\Tqadmtpl\Commands\TqadmtplCommand;
 use Taq\Tqadmtpl\View\Components\Layout;
 use Taq\Tqadmtpl\View\Components\Sidebaritem;
 use Taq\Tqadmtpl\View\Components\Sidebargroup;
-
+use Taq\Tqadmtpl\View\Components\Sidebarpersist;
 use Taq\Tqadmtpl\Livewire\TqadmSide;
+use Taq\Tqadmtpl\Livewire\TqadmSidePersist;
 
 class TqadmtplServiceProvider extends PackageServiceProvider
 {
@@ -32,6 +33,8 @@ class TqadmtplServiceProvider extends PackageServiceProvider
             ->hasViewComponent('tqadm', Layout::class)
             ->hasViewComponent('tqadm', Sidebaritem::class)
             ->hasViewComponent('tqadm', Sidebargroup::class)
+            ->hasViewComponent('tqadm', Sidebarpersist::class)
+            
             ->hasRoute('web')
             ->hasMigration('create_tq_memos_table')
             //->hasCommand(TqadmtplCommand::class);
@@ -43,5 +46,7 @@ class TqadmtplServiceProvider extends PackageServiceProvider
     }
     public function packageRegistered(){
         Livewire::component('tqadm-side', TqadmSide::class);
+        Livewire::component('tqadm-side-persist', TqadmSidePersist::class);
+        
     }
 }

@@ -20,8 +20,8 @@
             dark:hover:bg-white/5 dark:focus-visible:bg-white/5 
             {{ isset($item->isActive) && $item->isActive ? '' : ''}}
             {{ $item->is_sub ? '':'min-h-[36px]'}}
+            {{ !isset($item->link) || !$item->link ? 'cursor-not-allowed':''}}
             dark:bg-white/5"
-
         >
         <div class=" rounded flex items-center justify-center 
                 {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-400' : $default_text_color }}

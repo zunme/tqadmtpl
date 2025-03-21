@@ -15,7 +15,9 @@ use Taq\Tqadmtpl\Livewire\TqadmSide;
 
 class TqadmtplServiceProvider extends PackageServiceProvider
 {
-
+    public function bootingPackage()
+    {
+    }
     public function configurePackage(Package $package): void
     {
         /*
@@ -30,10 +32,14 @@ class TqadmtplServiceProvider extends PackageServiceProvider
             ->hasViewComponent('tqadm', Layout::class)
             ->hasViewComponent('tqadm', Sidebaritem::class)
             ->hasViewComponent('tqadm', Sidebargroup::class)
-            //->hasRoute('web')
+            ->hasRoute('web')
             ->hasMigration('create_tq_memos_table')
             //->hasCommand(TqadmtplCommand::class);
             ;
+    }
+
+    public function registeringPackage()
+    {
     }
     public function packageRegistered(){
         Livewire::component('tqadm-side', TqadmSide::class);

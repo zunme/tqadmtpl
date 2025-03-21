@@ -14,6 +14,7 @@
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
         @vite(['resources/css/app.css','resources/js/app.js'])
         @fluxAppearance
+        @bukStyles
         <style>
             .font-pretendard {
                 font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -95,21 +96,42 @@
                 </div>
             </main>
         </div>
-
         <!-- wire modal -->
         @livewire('wire-elements-modal')
+        <!-- bukScripts -->
         <!-- flux -->
         @fluxScripts
-
         @taqScripts
         <script src="/flux/flux.min.js?id=8da5418c" data-navigate-once></script>
         <script>
          document.addEventListener("alpine:init", () => {
+            /* single open */
             window.Alpine.store("sidebar", {
+                isOpen: window.Alpine.$persist(!0).as("isOpen"),
+                collapsed: window.Alpine.$persist('').as("collapsed"),
+                groupIsCollapsed: function (n) {
+                    return this.collapsed !== n;
+                },
+                collapseGroup: function (n) {
+                    this.collapsed==n || (this.collapsed = n);
+                },
+                toggleCollapsedGroup: function (n) {
+                    this.collapsed = this.collapsed==n ? '' : n;
+                },
+                close: function () {
+                    this.isOpen = !1;
+                },
+                open: function () {
+                    this.isOpen = !0;
+                },
+            });
+            /* multiple open
+            window.Alpine.store("sidebar2", {
                 isOpen: window.Alpine.$persist(!0).as("isOpen"),
                 collapsedGroups: window.Alpine.$persist([]).as("collapsedGroups"),
                 groupIsCollapsed: function (n) {
-                return this.collapsedGroups.includes(n);
+                    console.log( 'groupIsCollapsed', n ,  this.collapsed , this.collapsedGroups.includes(n) )
+                    return !this.collapsedGroups.includes(n);
                 },
                 collapseGroup: function (n) {
                 this.collapsedGroups.includes(n) ||
@@ -127,6 +149,7 @@
                 this.isOpen = !0;
                 },
             });
+            */
          });
         </script>
 

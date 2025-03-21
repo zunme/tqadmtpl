@@ -65,6 +65,15 @@ return [
                     'target'=>'',
                     'can'=>''
                 ],
+                [
+                    'label'=>'noti sample',
+                    'id'=>'test',
+                    'route'=>'',
+                    'link'=>'/tqpond-taq/sample',
+                    'icon'=>'fa-solid fa-s',
+                    'target'=>'_blank',
+                    'can'=>''
+                ],
             ]
         ],
         [

@@ -10,9 +10,9 @@
             @if(isset($item->target) && $item->target)
                 target="{{$item->target}}"
             @else
-            wire:click="chageroute('{{$item->id}}','{{$item->parent_id}}')"
-        @endif
-            wire:navigate
+                wire:navigate
+                wire:click="chageroute('{{$item->id}}','{{$item->parent_id}}')"
+            @endif
         @endif
         x-on:click="window.matchMedia(`(max-width: 1024px)`).matches &amp;&amp; $store.sidebar.close()" 
         class="fi-sidebar-item-button relative flex items-center justify-center gap-x-3 rounded-lg px-2 py-1 

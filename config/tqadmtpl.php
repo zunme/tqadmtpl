@@ -2,7 +2,8 @@
 
 // config for Taq/Tqadmtpl
 return [
-    'use_persist'=>false,
+    'use_persist'=>true,// 사이드바에 livewire persist 사용
+    'allway_collaspe'=>true,//false 시 헤더, 메인도 크기변경
     'menu_label'=>[
         'label'=>"홈가기",
         'link'=>'/'
@@ -18,8 +19,9 @@ return [
         'min_main' => "pl-[38px]",
         'max_main' => "pl-[250px]",
     ],
-    'group_menu_icon_change'=>false,
-    'side-z-index'=>'z-10',
+    'group_menu_icon_change'=>false, // true시 그룹메뉴 아이콘이 축소시 화살표 열림 표시로 변경
+    'side-z-index'=>'z-11',
+    'side-bg-z-index'=>'z-10',
     'top-z-index'=>'z-9',
     'use_main_bottom'=>true,
     'main_bottom_class'=>'bg-zinc-300 rounded-t border-l border-t border-r border-zinc-400 shadow-lg',

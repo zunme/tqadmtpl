@@ -43,6 +43,7 @@
             x-data="{
                 sidebar_collaspe : $store.sidebar.isOpen,
                 view_collaspe:$store.sidebar.isOpen,
+                allway_collaspe : {{config('tqadmtpl.allway_collaspe',false) ? 'true':'false'}},
                 changeCollaspe(){
                     if( this.sidebar_collaspe ){
                         this.sidebar_collaspe = false;
@@ -63,9 +64,9 @@
         >
         <div class="min-h-svh relative bg-gray-200 overflow-hidden">
             <nav class="navbar fixed top-0 left-0 min-h-[30px] right-0 bg-white flex justify-between p-2 shadow-lg navbar-light transition-[width] duration-300
-                    {{config('tqadmtpl.top-z-index','z-10')}}
+                    {{config('tqadmtpl.top-z-index','z-9')}}
                     " 
-                :class="sidebar_collaspe ? '{{$min_sidebar}}':'{{$max_sidebar}}'"
+                :class="allway_collaspe ? '{{$min_sidebar}}':'{{$max_sidebar}}'"
                 x-ref="navbar_top">
                 <div class="inline-flex items-center gap-2 text-lg">
                     <span class="h-8 w-8 flex justify-center items-center border rounded curwor-pointer" 
@@ -81,17 +82,26 @@
                     @if( isset($header_right) )
                         {{$header_right}}
                     @endif
+                    <flux:dropdown position="top" align="start">
+                        <flux:button icon-trailing="chevron-down" size="sm">{{$user->name}}</flux:button>
+                        <flux:menu>
+                            <div class="flex gap-2 justify-end items-center px-3 py-1.5 w-full focus:outline-hidden rounded-md text-left text-sm font-medium [&[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&[data-active]_[data-flux-menu-item-icon]]:text-current">
+                                <i class="fa-solid fa-right-from-bracket text-gray-800"></i>
+                                <x-logout :action="route('admin.logout')" class="text-gray-800" />
+                            </div>
+                        </flux:menu>
+                    </flux:dropdown>
                 </div>
             </nav>
             @if( config('tqadmtpl.use_persist',false) )
                 @persist('sidebar')
-                <livewire:tqadm-side-persist :max_width="$max_width" :min_width="$min_width"/>      
+                <livewire:tqadm-side-persist :max_width="$max_width" :min_width="$min_width"/>   
                 @endpersist
             @else 
                 <livewire:tqadm-side :max_width="$max_width" :min_width="$min_width"/>
             @endif
             <main class="w-full transition-[width] duration-300" 
-                :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
+                :class=" allway_collaspe  ? '!{{$min_main}}':'!{{$max_main}}'"
                 x-ref="main_wrap">
                 <div class="p-1">
                     <div class="bg-white rounded-md px-2 pt-2 {{config('tqadmtpl.use_main_bottom',false) ? 'pb-10':''}}">
@@ -100,8 +110,8 @@
                 </div>
             </main>
             @if(config('tqadmtpl.use_main_bottom',false)) 
-            <div class="fixed bottom-0 right-0 h-10 w-full {{config('tqadmtpl.top-z-index','z-10')}}"
-                :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
+            <div class="fixed bottom-0 right-0 h-10 w-full {{config('tqadmtpl.top-z-index','z-9')}}"
+                :class=" allway_collaspe  ? '!{{$min_main}}':'!{{$max_main}}'"
                 >
                 <div class="w-full transition-[width] duration-300 h-full shadow-[0_-5px_5px_-5px_#333] {{ config('tqadmtpl.main_bottom_class','')}}" 
                 >
@@ -148,7 +158,6 @@
                 isOpen: window.Alpine.$persist(!0).as("isOpen"),
                 collapsedGroups: window.Alpine.$persist([]).as("collapsedGroups"),
                 groupIsCollapsed: function (n) {
-                    console.log( 'groupIsCollapsed', n ,  this.collapsed , this.collapsedGroups.includes(n) )
                     return !this.collapsedGroups.includes(n);
                 },
                 collapseGroup: function (n) {

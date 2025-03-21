@@ -13,6 +13,7 @@ class Layout extends Component
     public function render(): View
     {
         $data = [
+            'user'=>optional(\Auth::guard('admin')->user()),
             'min_width' => config('tqadmtpl.size.min_width'),
             'max_width' => config('tqadmtpl.size.max_width'),
         

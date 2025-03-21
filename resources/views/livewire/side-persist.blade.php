@@ -3,6 +3,7 @@
     :class="view_collaspe ? '!{{$min_width}}':'!{{$max_width}}'"
     @mouseover="if( view_collaspe ) view_collaspe=false"
     @mouseover.away="if( !view_collaspe ) view_collaspe = sidebar_collaspe"
+    @click="changeCollaspe()"
     x-data="{
         current_id : $wire.entangle('current_id'),
         parent_id : $wire.entangle('parent_id'),
@@ -87,4 +88,9 @@
             </ul>
         </div>
     </div>
+        <!--div class="bg-gray-400/80 fixed top-0 bottom-0 left-0 right-0"
+        @click="if(allway_collaspe && !sidebar_collaspe ) {changeCollaspe();}"
+        x-show="allway_collaspe && !sidebar_collaspe"
+        >
+    </div--> 
 </sidebar>

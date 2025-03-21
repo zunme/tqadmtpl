@@ -99,12 +99,12 @@
             <div class="fixed bottom-0 right-0 h-10 w-full {{config('tqadmtpl.top-z-index','z-10')}}"
                 :class=" sidebar_collaspe ? '!{{$min_main}}':'!{{$max_main}}'"
                 >
-                <div class="w-full transition-[width] duration-300 bg-gray-200 h-full rounded-t border {{ config('tqadmtpl.main_bottom_class','')}}" 
+                <div class="w-full transition-[width] duration-300 h-full shadow-[0_-5px_5px_-5px_#333] {{ config('tqadmtpl.main_bottom_class','')}}" 
                 >
                     @if( isset($bottom) )
                         {{$bottom}}
                     @else 
-                    <div class="text-center">Admin Page</div>
+                    <div class="bg- flex h-full items-center justify-center text-center">Admin Page</div>
                     @endif
                 </div>
             </div>

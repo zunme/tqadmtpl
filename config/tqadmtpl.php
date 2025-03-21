@@ -21,7 +21,7 @@ return [
     'side-z-index'=>'z-10',
     'top-z-index'=>'z-9',
     'use_main_bottom'=>true,
-    'main_bottom_class'=>'',
+    'main_bottom_class'=>'bg-zinc-300 rounded-t border-l border-t border-r border-zinc-400 shadow-lg',
     'add_body'=>[
         '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>',
              // @bukScripts

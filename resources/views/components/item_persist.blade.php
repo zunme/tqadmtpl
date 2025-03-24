@@ -11,7 +11,8 @@
                 target="{{$item->target}}"
             @else
                 wire:navigate
-                wire:click="chageroute('{{$item->id}}','{{$item->parent_id}}')"
+                wireclick="chageroute('{{$item->id}}','{{$item->parent_id}}')"
+                @click="chageroute('{{$item->id}}','{{$item->parent_id}}')"
             @endif
         @endif
         x-on:click="window.matchMedia(`(max-width: 1024px)`).matches &amp;&amp; $store.sidebar.close()" 

@@ -2,6 +2,9 @@
     'item'=> (object)[],
     'border_b'=>false,
     'default_text_color'=>config('tqadmtpl.default_text_color'),
+    'selected_item_class'=>config('tqadmtpl.selected_item_class', 'text-red-500 font-bold'),
+    'selected_text'=>config('tqadmtpl.selected_text', 'text-gray-800'),
+
     'group_menu_icon_change'=>false,
 ])
 <li class="fi-sidebar-item fi-active fi-sidebar-item-active flex flex-col  {{ $border_b ? ' py-1 border-b border-gray-300':'gay-y-1'}}">
@@ -23,15 +26,17 @@
             {{ $item->parent_id ? '':'min-h-[36px]'}}
             {{ !isset($item->link) || !$item->link ? 'cursor-not-allowed':''}}
             dark:bg-white/5"
-            :class="current_id=='{{$item->id}}' ? 'text-red-500 font-bold':'{{$default_text_color}}'"
         >
         <div class=" rounded flex items-center justify-center 
                 {{ $item->parent_id && !$group_menu_icon_change ? 'text-xs w-5 h-5 !ml-1':'text-sm w-6 h-6' }}
             ">
-            <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
-            dark:text-primary-400" aria-hidden="true"></i>
+            <i 
+                class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium dark:text-primary-400" 
+                :class="current_id=='{{$item->id}}' ? '{{$selected_item_class}}':'{{$default_text_color}}'"
+                aria-hidden="true"></i>
         </div>
-        <span class="fi-sidebar-item-label flex-1 truncate text-sm font-medium  dark:text-primary-400"    
+        <span class="fi-sidebar-item-label flex-1 truncate text-sm font-medium  dark:text-primary-400"
+            :class="current_id=='{{$item->id}}' ? '{{$selected_text}}':'{{$default_text_color}}'"
             >
             {{$item->label ?? $item->link}}
         </span>

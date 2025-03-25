@@ -2,6 +2,8 @@
     'item'=> (object)[],
     'border_b'=>false,
     'default_text_color'=>config('tqadmtpl.default_text_color'),
+    'selected_item_class'=>config('tqadmtpl.selected_item_class', 'text-white bg-red-400'),
+    'selected_text'=>config('tqadmtpl.selected_text', 'text-gray-800'),
     'group_menu_icon_change'=>false,
 ])
 <li class="fi-sidebar-item fi-active fi-sidebar-item-active flex flex-col  {{$border_b ? ' py-1 border-b border-gray-300':'gay-y-1'}}">
@@ -24,13 +26,13 @@
             dark:bg-white/5"
         >
         <div class=" rounded flex items-center justify-center 
-                {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-400' : $default_text_color }}
+                {{ isset($item->isActive) && $item->isActive ? $selected_item_class : $default_text_color }}
                 {{ $item->is_sub && !$group_menu_icon_change ? 'text-xs w-5 h-5 !ml-1':'text-sm w-6 h-6' }}
             ">
             <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
             dark:text-primary-400" aria-hidden="true"></i>
         </div>
-        <span class="fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? ' text-red-400' : $default_text_color }} dark:text-primary-400"
+        <span class="fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? $selected_text : $default_text_color }} dark:text-primary-400"
             
             >
             {{$item->label ?? $item->link}}

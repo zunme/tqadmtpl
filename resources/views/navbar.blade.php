@@ -3,7 +3,7 @@
                     class="navbar fixed top-0 left-0 min-h-[30px] right-0 bg-white flex justify-between p-2 shadow-lg navbar-light transition-[width] duration-300
                         {{config('tqadmtpl.top-z-index','z-9')}}
                         " 
-                    :class="allway_collaspe ? '{{$min_sidebar}}':'{{$max_sidebar}}'"
+                    :class="allway_collaspe || sidebar_collaspe ? '{{$min_sidebar}}':'{{$max_sidebar}}'"
                     x-ref="navbar_top">
                     <div class="inline-flex items-center gap-2 text-lg">
                         <span class="h-8 w-8 flex justify-center items-center border rounded curwor-pointer" 

@@ -1,3 +1,8 @@
+@props([
+    'selected_group_class'=>config('tqadmtpl.selected_group_class', 'text-blue-500 font-bold'),
+    'selected_text'=>config('tqadmtpl.selected_text', 'text-gray-800'),
+    'default_text_color'=>config('tqadmtpl.default_text_color', 'text-gray-500')
+])
 <sidebar
     class="fixed top-0 left-0 bottom-0 bg-white shadow-2xl transition-[width] duration-300 overflow-x-hidden {{config('tqadmtpl.side-z-index')}}"
     :class="view_collaspe ? '!{{$min_width}}':'!{{$max_width}}'"
@@ -36,12 +41,13 @@
                             class="fi-sidebar-group-button flex items-center gap-x-3 px-2 py-1 cursor-pointer justify-between"
                             >
                             <div class="flex items-center justify-center grow flex-grow min-h-[36px]"
-                                :class="parent_id=='{{$item->id}}' ? 'text-blue-500 font-bold':'{{$default_text_color}}'"
                                 >
                                 <div class="w-6 h-6 rounded flex items-center justify-center"
                                     >
-                                    <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
-                                    dark:text-primary-400" aria-hidden="true"
+                                    <i 
+                                        class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium dark:text-primary-400" 
+                                        :class="parent_id=='{{$item->id}}' ? '{{$selected_group_class}}':'{{$default_text_color}}'"
+                                        aria-hidden="true"
                                     @if($group_menu_icon_change)
                                         x-show="!view_collaspe|| $store.sidebar.groupIsCollapsed('{{$item->label}}')"
                                     @endif
@@ -55,6 +61,7 @@
                                 </div>
                                 <span 
                                     class="ml-3 fi-sidebar-item-label flex-1 truncate text-sm font-medium  dark:text-primary-400"
+                                    :class="parent_id=='{{$item->id}}' ? '{{$default_text_color}}':'{{$default_text_color}}'"
                                     >
                                     {{$item->label}}
                                 </span>

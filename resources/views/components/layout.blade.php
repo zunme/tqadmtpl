@@ -79,6 +79,11 @@
             @else 
                 @include('tqadmtpl::navbar')
                 <livewire:tqadm-side :max_width="$max_width" :min_width="$min_width"/>
+                <div class="bg-gray-400/80 fixed top-0 bottom-0 left-0 right-0"
+                    @click="if(allway_collaspe && !sidebar_collaspe ) {changeCollaspe();}"
+                    x-show="allway_collaspe && !sidebar_collaspe"
+                    >
+                </div>  
             @endif
             <main class="w-full transition-[width] duration-300" 
                 :class=" allway_collaspe  ? '!{{$min_main}}':'!{{$max_main}}'"

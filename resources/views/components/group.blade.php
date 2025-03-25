@@ -2,6 +2,7 @@
     'item'=>(object)[],
     'border_b'=>false,
     'group_menu_icon_change'=>false,
+    'selected_group_class'=>config('tqadmtpl.selected_group_class', 'text-white bg-red-200'),
     'default_text_color'=>config('tqadmtpl.default_text_color')
 ])
 <li 
@@ -14,7 +15,7 @@
         <div class="flex items-center justify-center grow flex-grow min-h-[36px]"
             >
             <div class="w-6 h-6 rounded flex items-center justify-center
-                    {{ isset($item->isActive) && $item->isActive ? 'text-white bg-red-200' : $default_text_color }}
+                    {{ isset($item->isActive) && $item->isActive ? $selected_group_class : $default_text_color }}
                 ">
                 <i class="{{ $item->icon ?  $item->icon :'fa-regular fa-circle'}} font-medium
                 dark:text-primary-400" aria-hidden="true"
@@ -30,7 +31,7 @@
                 @endif
             </div>
             <span 
-                class="ml-3 fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? ' text-primary-600' : $default_text_color }} dark:text-primary-400"
+                class="ml-3 fi-sidebar-item-label flex-1 truncate text-sm font-medium {{ isset($item->isActive) && $item->isActive ? $default_text_color : $default_text_color }} dark:text-primary-400"
                 >
                 {{$item->label}}
             </span>

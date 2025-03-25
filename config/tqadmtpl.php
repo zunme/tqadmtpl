@@ -2,7 +2,7 @@
 
 // config for Taq/Tqadmtpl
 return [
-    'use_persist'=>true,// 사이드바에 livewire persist 사용
+    'use_persist'=>false,// 사이드바에 livewire persist 사용
     'allway_collaspe'=>true,//false 시 헤더, 메인도 크기변경
     'group_menu_icon_change'=>false, // true시 그룹메뉴 아이콘이 축소시 화살표 열림 표시로 변경
     //'selected_item_class'=>'',  // !persist : text-white bg-red-400 ,  persist : text-red-500 font-bold

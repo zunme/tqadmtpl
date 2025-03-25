@@ -72,7 +72,6 @@
                                 x-bind:aria-expanded="! $store.sidebar.groupIsCollapsed('{{$item->label}}')" 
                                 x-on:click.stop="$store.sidebar.toggleCollapsedGroup('{{$item->label}}')" 
                                 x-bind:class="{ '-rotate-180': $store.sidebar.groupIsCollapsed('{{$item->label}}') }" aria-expanded="true"
-                                x-show="!view_collaspe"
                                 >
                                 <span class="sr-only"> {{$item->label}} </span>
 

@@ -1,3 +1,12 @@
+    # 기능
+        - admin template
+        - memo morph
+        - telegram 메세지 보내기
+        - tqform
+            -- noti
+            -- workday 계산
+            -- filepond 이미지 업로드
+            
     # 같이 설치되는것들
         - ROLE & PERMISSION 템플릿 같이 설치됨
         - forms 

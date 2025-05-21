@@ -163,6 +163,24 @@
             });
             */
          });
+        document.addEventListener('notify', event => {
+            Toastify({
+                text: event.detail.message,
+                duration: 2000,
+                gravity:'top',
+                position:'center',
+                newWindow: true,
+                close:true,
+                offset: {
+                    x: 0,
+                    y: '30vh'
+                },
+                style: {
+                    background: event.detail.type === 'success' ? "#0c4a6e" : "red",
+                    color:"white"
+                }
+            }).showToast();
+        });
         </script>
 
         @foreach (  config('tqadmtpl.add_body') as $item)

@@ -6,7 +6,11 @@
             -- noti
             -- workday 계산
             -- filepond 이미지 업로드
-            
+        - img preview && notify
+            vendor/taq/tqadmtpl/resources/views/components/layout.blade.php
+            viewimg( img.click.event )
+            notify ...
+
     # 같이 설치되는것들
         - ROLE & PERMISSION 템플릿 같이 설치됨
         - forms 

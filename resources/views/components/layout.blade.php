@@ -11,6 +11,10 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.css" integrity="sha512-9NawOLzuLE2GD22PJ6IPWXEjPalb/FpdH1qMpgXdaDM+0OfxEV75ZCle6KhZi0vM6ZWvMrNnIZv6YnsL+keVmA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
         @vite(['resources/css/app.css','resources/js/app.js'])
         @fluxAppearance
@@ -25,13 +29,11 @@
             [x-cloak="1"] {
                 display: none !important;
             }
-
             @media (max-width: 1023px) {
                 [x-cloak="-lg"] {
                 display: none !important;
                 }
             }
-
             @media (min-width: 1024px) {
                 [x-cloak="lg"] {
                 display: none !important;
@@ -181,6 +183,23 @@
                 }
             }).showToast();
         });
+
+        const viewimg = (e)=>{
+            let src = e.target?.src
+            if( !src ) return;
+            let img_viewer = new Viewer(e.target, {
+                inline: false,
+                viewed() {
+                    img_viewer.zoomTo(1);
+                },
+                hide(){
+                    console.log( 'hide' )
+                    img_viewer.destroy()
+                }
+
+            });
+            img_viewer.show()
+        }
         </script>
 
         @foreach (  config('tqadmtpl.add_body') as $item)

@@ -39,6 +39,16 @@
                 display: none !important;
                 }
             }
+            input[type=file].default-input::file-selector-button {
+                color: #fff;
+                background: var(--color-gray-700);
+                cursor: pointer;
+                border: 0;
+                margin-inline: -1rem 1rem;
+                padding: 8px 1rem 8px 1.25rem;
+                font-size: .875rem;
+                font-weight: 500;
+            }
         </style>
     </head>
     <body class="font-pretendard min-h-screen bg-white antialiased text-sm"

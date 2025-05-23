@@ -1,5 +1,6 @@
     # js or css 변경시
         ./buildasset.sh
+        config version 수정
         php artisan vendor:publish --tag=tqadmtpl-assets
     # 기능
         - admin template

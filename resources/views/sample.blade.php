@@ -28,12 +28,52 @@
             }
         </pre>
         <div class="flex gap-4">
-            <button @click="$dispatch('openModal', {component: 'users'})" class="cursor-pointer text-blue-700">Show Users</button>
+            <button @click="$dispatch('openModal', {component: 'tqadm-users'})" class="cursor-pointer text-blue-700">Show Users</button>
             <button 
                  class="cursor-pointer text-blue-700"
                 onclick="Livewire.dispatch('openModal', { component: 'edit-user', arguments: { user: {{ \Auth::guard('admin')->user()->id }} }})"
                 >Edit User</button>
         </div>
+    </div>
+    <hr>
+    <div>
+        <h2 class="text-lg font-bold">alpine pop</h2>
+        <div>
+            <button 
+                class="bg-red-700 text-white rounded px-4 py-1"
+                type="button" onClick="window.dispatchEvent(new CustomEvent('testpop_open', {detail:{'id' : '123'}}))">open</button>
+        </div>
+
+        <pre>
+        body 하단 삽입시 persist
+        @persist('alpinepop')
+            x-tqhlp-alpine-pop 
+                modal_id="testpop"
+                closable="true"
+                maxwidth="max-w-lg"
+                popindex="'z-100"
+                title="TEST POP"
+                >
+                <x-slot name="datainit">
+                    // init 추가 && ETC
+                  datainit(){
+
+                  }
+                  ...
+                </x-slot>
+                내용
+            /x-tqhlp-alpine-pop
+        @endpersist
+            window.dispatchEvent(new CustomEvent('testpop_open', {detail:{'id' : '123'}}));
+        </pre>
+        <x-tqhlp-alpine-pop 
+            modal_id="testpop"
+            closable="true"
+            maxwidth="max-w-lg"
+            popindex="'z-100"
+            title="TEST POP"
+            >test id : <span x-text="event_detail?.id"></span>
+        </x-tqhlp-alpine-pop>
     </div>
     <hr >
     <div class="mt-4">

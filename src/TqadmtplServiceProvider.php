@@ -11,8 +11,11 @@ use Taq\Tqadmtpl\View\Components\Layout;
 use Taq\Tqadmtpl\View\Components\Sidebaritem;
 use Taq\Tqadmtpl\View\Components\Sidebargroup;
 use Taq\Tqadmtpl\View\Components\Sidebarpersist;
+
 use Taq\Tqadmtpl\Livewire\TqadmSide;
 use Taq\Tqadmtpl\Livewire\TqadmSidePersist;
+
+use Taq\Tqadmtpl\Livewire\TqadmUsers;
 
 class TqadmtplServiceProvider extends PackageServiceProvider
 {
@@ -47,6 +50,7 @@ class TqadmtplServiceProvider extends PackageServiceProvider
     public function packageRegistered(){
         Livewire::component('tqadm-side', TqadmSide::class);
         Livewire::component('tqadm-side-persist', TqadmSidePersist::class);
+        Livewire::component('tqadm-users', TqadmUsers::class);
         
     }
 }

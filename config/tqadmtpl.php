@@ -30,18 +30,8 @@ return [
     'use_main_bottom'=>true,
     'main_bottom_class'=>'bg-zinc-300 rounded-t border-l border-t border-r border-zinc-400 shadow-lg',
     'add_body'=>[
-        '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>',
-             // @bukScripts
-       "
-       <script src='https://cdn.jsdelivr.net/npm/moment@2.26.0/moment.min.js'></script>
-       <script src='https://cdn.jsdelivr.net/npm/moment-timezone@0.5.31/builds/moment-timezone-with-data.min.js'></script>
-       <script src='https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js'></script>
-       <script src='https://unpkg.com/easymde/dist/easymde.min.js'></script>
-       <script src='https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js'></script>
-       <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
-       <script src='https://cdn.jsdelivr.net/npm/pikaday/pikaday.js'></script>
-      "
     ],
+    'script_ver'=>'20250523110000',
     'menus'=>[
         [
             'label'=>'HOME',
@@ -51,7 +41,14 @@ return [
             'target'=>'',
             'can'=>''
         ],
-        
+        [
+            'label'=>'카테고리',
+            'id'=>'cate',
+            'route'=>'admin.cate',
+            'icon'=>'fa-solid fa-table',
+            'target'=>'',
+            'can'=>''
+        ],
         [
             'label' =>'sample',
             'icon'=>'',

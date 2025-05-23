@@ -1,3 +1,6 @@
+    # js or css 변경시
+        ./buildasset.sh
+        php artisan vendor:publish --tag=tqadmtpl-assets
     # 기능
         - admin template
         - memo morph
@@ -19,6 +22,7 @@
         ```
         php artisan vendor:publish --tag=tqadmtpl-migrations
         php artisan vendor:publish --tag=tqadmtpl-configs
+        php artisan vendor:publish --tag=tqadmtpl-assets
         ```
         ```
         <x-tqadm-layout>

@@ -103,9 +103,10 @@
                 }
             }).showToast();
         });
-
+        function preloadershow(){}
 
         </script>
+        @stack('scripts')
     </head>
     <body class="font-pretendard min-h-screen bg-white antialiased text-sm"
             x-data="{

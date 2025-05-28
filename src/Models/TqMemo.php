@@ -14,7 +14,7 @@ class TqMemo extends Model
 		'etc'=>'array',
 	];
 	public function writeuser(){
-		return $this->belongsTo(\App\Models\User::class, 'write_user_id', 'id');
+		return $this->belongsTo(\App\Models\Admin::class, 'write_user_id', 'id');
 	}
 	public function tqmemotag()
     {

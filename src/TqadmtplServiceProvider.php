@@ -38,7 +38,7 @@ class TqadmtplServiceProvider extends PackageServiceProvider
             ->hasViewComponent('tqadm', Sidebargroup::class)
             ->hasViewComponent('tqadm', Sidebarpersist::class)
             ->hasAssets()
-            ->hasRoutes(['web','api'])
+            ->hasRoutes(['web','api', 'admin'])
             ->hasMigration('create_tq_memos_table')
             //->hasCommand(TqadmtplCommand::class);
             ;

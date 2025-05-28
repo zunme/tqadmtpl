@@ -5,7 +5,7 @@
         @endpush
     @endonce
     <x-tqhlp-pagination 
-        url="/api/admin/users" 
+        url="/tqadm/api/users" 
         side="4" class="" innerclass=""
         tableid="users"
         formcall=null
@@ -23,6 +23,10 @@
                     <x-tqhlp-table role="th">#</x-tqhlp-table>
                     <x-tqhlp-table role="th">아이디</x-tqhlp-table>
                     <x-tqhlp-table role="th">이름</x-tqhlp-table>
+                    <x-tqhlp-table role="th">포인트</x-tqhlp-table>
+                    <x-tqhlp-table role="th">Cash</x-tqhlp-table>
+                    <x-tqhlp-table role="th">bonus</x-tqhlp-table>
+                    <x-tqhlp-table role="th">메모</x-tqhlp-table>
                 </tr>
             </x-slot>
             <x-slot name="tbody">
@@ -34,6 +38,10 @@
                             @click="openUser(item)"
                             ></x-tqhlp-table>
                         <x-tqhlp-table role="td" x-text="item.name"></x-tqhlp-table>
+                        <x-tqhlp-table role="td" class="text-right" x-text="(item.point).toLocaleString()"></x-tqhlp-table>
+                        <x-tqhlp-table role="td" class="text-right" x-text="(item.cash).toLocaleString()"></x-tqhlp-table>
+                        <x-tqhlp-table role="td" class="text-right" x-text="(item.bonus).toLocaleString()"></x-tqhlp-table>
+                        <x-tqhlp-table role="td" class="text-right" x-text="item.memos_count"></x-tqhlp-table>
                     </tr>
                 </template>
             </x-slot>
@@ -45,28 +53,7 @@
         </template>
     </x-tqhlp-Pagination>
 
-    <x-tqhlp-alpine-pop 
-        modal_id="userinfo"
-        closable="true"
-        maxwidth="max-w-lg"
-        popindex="'z-100"
-        title="유저정보"
-        >
-        <x-slot name="datainit">
-            datainit(){
-                axios.get(`/api/admin/user/${this.id}`).then( res=>{
-                    this.info = res.data
-                    this.memos = res.data.memos
-                    this.showModal()
-                    //const tree = jsonview.create(res.data);
-                    //jsonview.render(tree, this.$refs.userinfo);
-                    const tree = jsonview.renderJSON(res.data, this.$refs.userinfo);
-                })
-            },
-        </x-slot>
-        <div x-ref="userinfo">
-            
-        </div>
-    </x-tqhlp-alpine-pop>
-
+<!-- pop user -->
+    @include('tqadmtpl::modal.userinfo')
+<!-- /pop -->
 </x-tqadm-layout>

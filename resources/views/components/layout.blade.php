@@ -22,7 +22,47 @@
         -->
         
         <style>
-
+            input:focus-visible,
+            button:focus-visible,
+            select:focus-visible {
+                outline: none;
+            }
+            input:focus,
+            button:focus,
+            select:focus {
+                outline: none;
+            }
+            :root{
+                --in: 72.06% .191 231.6;
+                --su: 64.8% .15 160;
+                --wa: 84.71% .199 83.87;
+                --er: 71.76% .221 22.18;
+                --pc: 89.824% .06192 275.75;
+                --ac: 15.352% .0368 183.61;
+                --inc: 0% 0 0;
+                --suc: 0% 0 0;
+                --wac: 0% 0 0;
+                --erc: 0% 0 0;
+                --rounded-box: 1rem;
+                --rounded-btn: .5rem;
+                --rounded-badge: 1.9rem;
+                --animation-btn: .25s;
+                --animation-input: .2s;
+                --btn-focus-scale: .95;
+                --border-btn: 1px;
+                --tab-border: 1px;
+                --tab-radius: .5rem;
+                --p: 49.12% .3096 275.75;
+                --s: 69.71% .329 342.55;
+                --sc: 98.71% .0106 342.55;
+                --a: 76.76% .184 183.61;
+                --n: 32.1785% .02476 255.701624;
+                --nc: 89.4994% .011585 252.096176;
+                --b1: 100% 0 0;
+                --b2: 96.1151% 0 0;
+                --b3: 92.4169% .00108 197.137559;
+                --bc: 27.8078% .029596 256.847952;
+            }
             input[type=file].default-input::file-selector-button {
                 color: #fff;
                 background: var(--color-gray-700);
@@ -32,6 +72,33 @@
                 padding: 8px 1rem 8px 1.25rem;
                 font-size: .875rem;
                 font-weight: 500;
+            }
+            .daisy-select {
+                display: inline-flex;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                height: 34px;
+                min-height: 34px;
+                padding-inline-start: 1rem;
+                padding-inline-end: 2.5rem;
+                --tw-bg-opacity: 1;
+                background-color: white;
+                background-image: linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+                background-position: calc(100% - 20px) calc(1px + 50%),calc(100% - 16.1px) calc(1px + 50%);
+                background-size: 4px 4px,4px 4px;
+                background-repeat: no-repeat;
+            }
+            .daisy-textarea {
+                min-height: 3rem;
+                flex-shrink: 1;
+                padding: .5rem 1rem;
+                --tw-bg-opacity: 1;
+                background-color: white;
             }
         </style>
 
@@ -104,7 +171,10 @@
             }).showToast();
         });
         function preloadershow(){}
-
+        function toDateTimeString( date ){
+            if( !date) return ''
+            return moment(date).format('YYYY-MM-DD HH:mm:ss')
+        }
         </script>
         @stack('scripts')
     </head>

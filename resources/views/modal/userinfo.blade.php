@@ -6,11 +6,9 @@
         title="유저정보"
         >
         <x-slot name="datainit">
-            memos : [],
             datainit(){
                 axios.get(`/tqadm/api/user/${this.id}`).then( res=>{
                     this.info = res.data
-                    this.memos = res.data.memos
                     this.showModal()
 
                     //const tree = jsonview.renderJSON(res.data, this.$refs.userinfo);
@@ -34,24 +32,20 @@
                     })
                 }
             },
-            saveMemo(e){
-                var formData = new FormData(e.target)
-                axios.post(`/tqadm/api/user/${this.info.id}/memo`, formData).then(res=>{
-                    alertcall('메모를 남겼습니다.')
-                    this.memos = res.data;
-                    e.target.reset()
-                })
-            },
+
             savePoint(e){
                 var formData = new FormData(e.target)
                 axios.post(`/tqadm/api/user/${this.info.id}/point`, formData).then(res=>{
                     alertcall('저장하였습니다.')
                     this.info.point = res.data.point
-                    this.memos = res.data.memos
+                    window.dispatchEvent(new CustomEvent('user_memos_refresh'));
                     // users_refresh
                     window.dispatchEvent(new CustomEvent('users_refresh'));
                     e.target.reset()
                 })  
+            },
+            openPoint(){
+                window.dispatchEvent(new CustomEvent('user_point_modal_open', {detail:{'id' : this.info.id ,'user':this.info}}));
             },
         </x-slot>
         <template x-if="info">
@@ -140,7 +134,7 @@
                         </x-slot>
                         <x-slot name="tbody">
                             <tr>
-                                <x-tqhlp-table role="th">포인트</x-tqhlp-table>
+                                <x-tqhlp-table role="th">포인트 <span @click="openPoint()">V</span></x-tqhlp-table>
                                 <x-tqhlp-table role="td">
                                     <input type="text"
                                         class="border py-1 px-2 text-base w-full border-gray-400  focus:border-blue-500 rounded text-right"
@@ -172,46 +166,12 @@
                     </div>
                 </form>
 
-                <form @submit.prevent="saveMemo(event)" class="mt-4">
-                    <div>메모</div>
-                    <textarea class="daisy-textarea w-full border border-gray-400 focus:border-blue-500 rounded focus:outline-0" name="memo" placeholder="남길 메모" required></textarea>
-                    <div class="flex justify-end my-2 px-2">
-                        <button class="py-1 px-3 rounded bg-red-600 text-white">메모저장</button>
-                    </div>      
-                </form>
+
 
                 <!-- 메모 -->
-                <div>
-                    <div class="">
-                        <div class="border-b-2 border-gray-300 py-4 mb-4 text-slate-500 font-bold px-5">메모</div>
-                        <template x-if="memos.length < 1">
-                            <div class="py-5 text-center text-gray-400 text-lg">저장된 메모가 없습니다.</div>
-                        </template>
-                        <template x-for="memo in memos">
-                            <div class="mb-4 pb-4 [&amp;:not(:last-child)]:border-b border-gray-600 ">
-                                <div class="flex justify-between text-gray-500 p-1">
-                                    <template x-if="memo.writeuser">
-                                        <div class="px-2">
-                                            <span x-text="memo.writeuser.userid"></span>
-                                            (<span x-text="memo.writeuser.name"></span>)
-                                        </div>
-                                    </template>
-                                    <template x-if="!memo.writeuser">
-                                        <div></div>
-                                    </template>
-                                    <div x-text="toDateTimeString(memo.created_at)"></div>
-                                </div>
-                                <pre x-text="memo.memo" 
-                                    class="border px-3 py-1 rounded w-full overflow-x-hidden whitespace-pre-wrap break-all h-[50px] overflow-y-auto"></pre>
-                            </div>
-                        </template>
-                    </div>
-                </div>
+                @include('tqadmtpl::modal.inc.memolist', ['table_id'=>'user_memos'])
                 <!-- / 메모 -->
 
             </div>
         </template>
-        <div x-ref="userinfo">
-            
-        </div>
     </x-tqhlp-alpine-pop>

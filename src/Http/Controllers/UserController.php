@@ -81,7 +81,22 @@ class UserController extends Controller
         }
         return $user;
     }
-    public function updatePoint(Request $request, $id){
+
+    public function pointList(Request $request, $id){
+        try{
+            $user = User::findOrFail($id);
+        }catch( ModelNotFoundException $e){
+            abort(400, '유저정보를 찾을 수 없습니다.');
+        }catch( Exception $e){
+            abort( 422, $e->getMEssage());
+        }
+
+        return TqPointLog::
+            with('taggable')
+            ->orderBy('id','desc')
+            ->paginate( 4 );
+    }
+    public function storePoint(Request $request, $id){
         $admin = \Auth::guard('admin')->user();
 
         $req = $request->validate([
@@ -135,6 +150,20 @@ class UserController extends Controller
         }
         return User::with('memos')->findOrFail($id);
     }
+    
+    public function memoList(Request $request, $id){
+        try{
+            $user = User::findOrFail($id);
+        }catch( ModelNotFoundException $e){
+            abort(400, '유저정보를 찾을 수 없습니다.');
+        }catch( Exception $e){
+            abort( 422, $e->getMEssage());
+        }
+
+        return $user->memos()
+            ->with(['writeuser'=>function ($q){ $q->select('id','email','name');}])
+            ->paginate( 3 );
+    }
     public function saveMemo(Request $request, $id){
         $req = $request->validate([
             'memo' => ['required', 'string'],
@@ -144,8 +173,9 @@ class UserController extends Controller
 		]);  
 
         $authuser = \Auth::guard('admin')->user();
+        if( !$authuser) abort(422, '로그인 후 사용해주세요.');
         try{
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $user->memos()->create([
                 'write_user_id'=>$authuser->id,
                 'type'=>'memo',
@@ -159,4 +189,5 @@ class UserController extends Controller
         $user = User::with(['memos.writeuser'=>function ($q){ $q->select('id','email','name');}])->find($id);
         return $user->memos;
     }
+
 }

@@ -1,3 +1,8 @@
+@php
+    $use_cash = config('tqhelper.tqcash.use', false);
+    $use_bonus = config('tqhelper.tqbonus.use', false);
+    
+@endphp
 <x-tqadm-layout>
     @once
         @push('scripts')
@@ -31,8 +36,12 @@
                     <x-tqhlp-table role="th">아이디</x-tqhlp-table>
                     <x-tqhlp-table role="th">이름</x-tqhlp-table>
                     <x-tqhlp-table role="th">{{config('tqhelper.tqpoint.label','포인트')}}</x-tqhlp-table>
+                    @if($use_cash)
                     <x-tqhlp-table role="th">Cash</x-tqhlp-table>
+                    @endif
+                    @if($use_bonus)
                     <x-tqhlp-table role="th">bonus</x-tqhlp-table>
+                    @endif
                     <x-tqhlp-table role="th">메모</x-tqhlp-table>
                 </tr>
             </x-slot>
@@ -46,8 +55,12 @@
                             ></x-tqhlp-table>
                         <x-tqhlp-table role="td" x-text="item.name"></x-tqhlp-table>
                         <x-tqhlp-table role="td" class="text-right cursor-pointer text-blue-600" x-text="(item.point).toLocaleString()" @click="openPoint(item)"></x-tqhlp-table>
+                        @if($use_cash)
                         <x-tqhlp-table role="td" class="text-right" x-text="(item.cash).toLocaleString()"></x-tqhlp-table>
+                        @endif
+                        @if($use_bonus)
                         <x-tqhlp-table role="td" class="text-right" x-text="(item.bonus).toLocaleString()"></x-tqhlp-table>
+                        @endif
                         <x-tqhlp-table role="td" class="text-right cursor-pointer text-blue-600" x-text="item.memos_count" @click="openMemo(item)"></x-tqhlp-table>
                     </tr>
                 </template>

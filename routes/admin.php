@@ -6,6 +6,9 @@ use Taq\Tqadmtpl\Http\Controllers\UserController as AdmUser;
 Route::middleware(['web','auth:admin'])
     ->name('tqadm.')->prefix('tqadm')
     ->group(function(){
+        Route::get('users', function () {
+            return view('tqadmtpl::users');
+        })->name('users');
         Route::prefix('api')->name('api.')->group(function () {
             Route::get('/users', [AdmUser::class, 'index'])->name('users');
             Route::get('/user/{id}', [AdmUser::class, 'show'])->name('user');

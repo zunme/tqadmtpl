@@ -54,6 +54,10 @@ class UserController extends Controller
 		]);   
         try{
             $user = User::findOrFail($id);
+            if( $user->tel != $req['tel'] || $user->name != $req['name']){
+                $req['checkplus_log_id'] = null;
+                $req['level'] = '10';
+            }
             $user->update( $req);
         } catch( ModelNotFoundException $e){
             throw new Exception('회원정보를 찾을 수 없습니다.');

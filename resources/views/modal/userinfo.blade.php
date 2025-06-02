@@ -19,6 +19,7 @@
                     var formData = new FormData(e.target)
                     axios.post(`/tqadm/api/user/${this.info.id}/info`, formData).then(res=>{
                         alertcall('변경하였습니다.')
+                        window.dispatchEvent(new CustomEvent('users_refresh'));
                         e.target.reset()
                     })
                 }
@@ -77,7 +78,7 @@
                             <tr>
                                 <x-tqhlp-table role="th">TEL</x-tqhlp-table>
                                 <x-tqhlp-table role="td">
-                                    <input type="" name="" :value="info.tel" 
+                                    <input type="numbery" name="tel" :value="info.tel" 
                                         class="border py-1 px-2 text-base w-full border-gray-400  focus:border-blue-500 rounded"
                                         >
                                 </x-tqhlp-table>
@@ -88,10 +89,11 @@
                                     <select
                                             class="daisy-select w-full border border-gray-400 rounded focus:outline-0 focus:border-blue-400"
                                             x-model="info.personality"
+                                            name='personality'
                                         >
-                                        <option disabled >개인/법인 선택</option>
-                                        <option value="0">개인</option>
-                                        <option value="1">법인</option>
+                                        <option value="" >개인/법인 선택</option>
+                                        <option value="P" :selected="info.personality=='P'">개인</option>
+                                        <option value="C" :selected="info.personality=='C'">법인</option>
                                     </select>
 
                                 </x-tqhlp-table>
@@ -134,7 +136,7 @@
                         </x-slot>
                         <x-slot name="tbody">
                             <tr>
-                                <x-tqhlp-table role="th">포인트 <span @click="openPoint()">V</span></x-tqhlp-table>
+                                <x-tqhlp-table role="th">{{config('tqhelper.tqpoint.label')}} <span @click="openPoint()"></span></x-tqhlp-table>
                                 <x-tqhlp-table role="td">
                                     <input type="text"
                                         class="border py-1 px-2 text-base w-full border-gray-400  focus:border-blue-500 rounded text-right"

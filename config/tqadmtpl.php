@@ -50,17 +50,17 @@ return [
             'can'=>''
         ],
         [
+            'label'=>'회원',
+            'id'=>'users',
+            'route'=>'tqadm.users',
+            'icon'=>'fa-solid fa-user',
+            'target'=>'',
+            'can'=>''
+        ],
+        [
             'label' =>'sample',
             'icon'=>'',
             'items'=>[
-                [
-                    'label'=>'users',
-                    'id'=>'users',
-                    'route'=>'tqadmsample.users',
-                    'icon'=>'fa-solid fa-user',
-                    'target'=>'',
-                    'can'=>''
-                ],
                 [
                     'label'=>'sample',
                     'id'=>'test',

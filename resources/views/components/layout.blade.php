@@ -8,9 +8,11 @@
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <script src="https://kit.fontawesome.com/483598c605.js" crossorigin="anonymous"></script>
+        <!--
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        -->
         @vite(['resources/css/app.css','resources/js/app.js'])
         @fluxAppearance
         <!--@ bukStyles -->
@@ -254,7 +256,8 @@
         <!-- flux -->
         @fluxScripts
         @taqScripts
+        <!--
         <script src="/flux/flux.min.js?id=8da5418c" data-navigate-once></script>
-
+        -->
     </body>
 </html>

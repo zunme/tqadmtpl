@@ -24,3 +24,5 @@
     display: none !important;
     }
 }
+
+.scale-auto{ scale:var(--tw-scale-x, '100%') var(--tw-scale-y, '100%'); }

@@ -4,6 +4,11 @@
     <div>
         <h2 class="text-lg font-bold">wire modal</h2>
         <pre class="border">
+            *** 수정필요
+            *** ./vendor/wire-elements/modal/resources/views/modal.blade.php
+            *** line :43 class 에 scale-auto 추가
+            *** .scale-auto{ scale:var(--tw-scale-x, '100%') var(--tw-scale-y, '100%'); }
+            
             namespace App\Http\Livewire;
 
             use App\Models\User;

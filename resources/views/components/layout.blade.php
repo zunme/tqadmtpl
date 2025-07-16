@@ -13,7 +13,9 @@
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
         -->
-        @vite(['resources/css/app.css','resources/js/app.js'])
+        
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
         @fluxAppearance
         <!--@ bukStyles -->
         <script src="{{ asset('/vendor/tqadmtpl/assets/adminadd.js') }}?ver={{config('tqadmtpl.script_ver',\Str::random(14) )}}" type="module"></script>
@@ -102,6 +104,7 @@
                 --tw-bg-opacity: 1;
                 background-color: white;
             }
+            .scale-auto{ scale:var(--tw-scale-x, '100%') var(--tw-scale-y, '100%'); }
         </style>
 
         @foreach (  config('tqadmtpl.add_body') as $item)
@@ -252,6 +255,7 @@
         </div>
         <!-- wire modal -->
         @livewire('wire-elements-modal')
+        
         <!-- bukScripts -->
         <!-- flux -->
         @fluxScripts
@@ -259,5 +263,6 @@
         <!--
         <script src="/flux/flux.min.js?id=8da5418c" data-navigate-once></script>
         -->
+  
     </body>
 </html>

@@ -34,7 +34,7 @@
                         <div class="py-5 text-center text-gray-400 text-lg">저장된 메모가 없습니다.</div>
                     </template>
                     <template x-for="memo in list">
-                        <div class="mb-4 pb-4 [&amp;:not(:last-child)]:border-b border-gray-600 ">
+                        <div class="mb-4 pb-4 not-last-border-b border-gray-600 ">
                             <div class="flex justify-between text-gray-500 p-1">
                                 <template x-if="memo.writeuser">
                                     <div class="px-2">

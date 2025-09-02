@@ -165,6 +165,7 @@
                 position:'center',
                 newWindow: true,
                 close:true,
+                escapeMarkup : false,
                 offset: {
                     x: 0,
                     y: '30vh'
